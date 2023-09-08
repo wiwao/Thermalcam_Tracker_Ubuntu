@@ -443,44 +443,78 @@ ECDSA key fingerprint is SHA256:kyh3u79IbcfVBsMS0CiLJofZ/hRdx67iLfVJ+rntxxx.
 Are you sure you want to continue connecting (yes/no)?
 
 Ubuntu母艦側のLANのIDの確認とofApp.cppのアプリの該当箇所を変更の上
+
 Darknet__LEPTON3PI_Tracker を再コンパイル
+
 WIFiと有線で場所が違うので注意。Ubuntu母艦からどちらで接続するか決める
 
 $ ifconfig
+
 enp0s31f6: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
-        inet 192.168.0.167  netmask 255.255.255.0  broadcast 192.168.0.255
-        inet6 fe80::ef17:8dac:b4e3:654d  prefixlen 64  scopeid 0x20<link>
-        ether 70:85:c2:58:d2:f6  txqueuelen 1000  (Ethernet)
-        RX packets 365531  bytes 438864962 (438.8 MB)
-        RX errors 0  dropped 125  overruns 0  frame 0
-        TX packets 80311  bytes 7357208 (7.3 MB)
-        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
-        device interrupt 16  memory 0xdf100000-df120000  
+
+	inet 192.168.0.167  netmask 255.255.255.0  broadcast 192.168.0.255
+        
+	inet6 fe80::ef17:8dac:b4e3:654d  prefixlen 64  scopeid 0x20<link>
+        
+	ether 70:85:c2:58:d2:f6  txqueuelen 1000  (Ethernet)
+        
+	RX packets 365531  bytes 438864962 (438.8 MB)
+        
+	RX errors 0  dropped 125  overruns 0  frame 0
+        
+	TX packets 80311  bytes 7357208 (7.3 MB)
+        
+	TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+        
+	device interrupt 16  memory 0xdf100000-df120000  
+
 lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
-        inet 127.0.0.1  netmask 255.0.0.0
-        inet6 ::1  prefixlen 128  scopeid 0x10<host>
-        loop  txqueuelen 1000  (Local Loopback)
-        RX packets 1079  bytes 97649 (97.6 KB)
-        RX errors 0  dropped 0  overruns 0  frame 0
-        TX packets 1079  bytes 97649 (97.6 KB)
-        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+	inet 127.0.0.1  netmask 255.0.0.0
+        
+	inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        
+	loop  txqueuelen 1000  (Local Loopback)
+        
+	RX packets 1079  bytes 97649 (97.6 KB)
+        
+	RX errors 0  dropped 0  overruns 0  frame 0
+        
+	TX packets 1079  bytes 97649 (97.6 KB)
+        
+	TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
 
 ofApp.cppの下記該当箇所を変更
+
   //****************Local IP**********************
+  
 	int fd;
+ 
 	struct ifreq ifr;
+ 
 	fd = socket(AF_INET, SOCK_DGRAM, 0);
+ 
 	ifr.ifr_addr.sa_family = AF_INET;
+ 
 	strncpy(ifr.ifr_name, "enp0s31f6", IFNAMSIZ-1);
+ 
 	ioctl(fd, SIOCGIFADDR, &ifr);
+ 
 	close(fd);
+ 
 	Zav_ip=inet_ntoa(((struct sockaddr_in *)&ifr.ifr_addr)->sin_addr);
+ 
 	//*********************************************
+ 
 	ttt2=-(ofGetElapsedTimef()+5);   //reboot hyozi syori!!
+ 
 	// Found_X.startThread();
 	
 }
+
 //--------------------------------------------------------------
+
 void ofApp::update(){
+
 ＊　インストールプロセスはDarknet__LEPTON3PI_Tracker を参考
 
