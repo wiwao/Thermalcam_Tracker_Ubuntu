@@ -496,7 +496,7 @@ ofApp.cppの下記該当箇所を変更
  
 	ifr.ifr_addr.sa_family = AF_INET;
  
-	strncpy(ifr.ifr_name, **"enp0s31f6"**, IFNAMSIZ-1);
+	strncpy(ifr.ifr_name, __"enp0s31f6"__, IFNAMSIZ-1);
  
 	ioctl(fd, SIOCGIFADDR, &ifr);
  
