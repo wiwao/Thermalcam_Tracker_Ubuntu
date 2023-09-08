@@ -495,8 +495,8 @@ ofApp.cppの下記該当箇所を変更
 	fd = socket(AF_INET, SOCK_DGRAM, 0);
  
 	ifr.ifr_addr.sa_family = AF_INET;
- <span style="color: red; ">赤文字</span>
-	strncpy(ifr.ifr_name, __"enp0s31f6"__, IFNAMSIZ-1);
+
+	strncpy(ifr.ifr_name, "enp0s31f6", IFNAMSIZ-1);
  
 	ioctl(fd, SIOCGIFADDR, &ifr);
  
